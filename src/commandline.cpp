@@ -16,10 +16,11 @@ void PrintUsage()
 
 int Commandline::ProcessRequest(int argc, char **argv)
 {
+	std::string surfaces[] = {"concrete", "muddy", "snow"};
 	std::string sopt = "none";
 	int dopt = -1;
 	std::string topt = "no_tires";
-	int index;
+	std::string* p;
 	int c;
 
 	opterr = 0;
@@ -45,21 +46,15 @@ int Commandline::ProcessRequest(int argc, char **argv)
 			else
 				std::cout << "Unknown option character " << optopt << "." << std::endl;
 			return 1;
-		default:
-			return 1;
 		}
 
+	//p = std::find(surfaces,surfaces+3,sopt);
+	//++p;
 	if ((sopt == "none") || (dopt == -1))
 	{
 		PrintUsage();
 	}
-	else
-	{
+	//std::cout << "sopt = " << sopt << "dopt = " << dopt << "topt = " << topt;
 
-	}
-	std::cout << "sopt = " << sopt << "dopt = " << dopt << "topt = " << topt;
-
-	for (index = optind; index < argc; index++)
-		std::cout << "Non-option argument " << argv[index] << std::endl;
 	return 0;
 }
